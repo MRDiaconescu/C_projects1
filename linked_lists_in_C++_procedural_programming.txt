@@ -1,0 +1,210 @@
+
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+
+
+//define the element of linked list
+
+typedef int info;
+
+typedef struct elem {
+	info informatie;
+	elem * ptrNextElem; } *pelem;
+	
+
+
+
+//add a node in the linked list after the end node
+
+pelem elemNou(pelem capLista, info informatie);
+
+pelem elemNou(pelem capLista, info informatie){
+      
+	pelem elemAdaugat = new elem;
+	
+	if (!elemAdaugat) {
+	
+	cout << "str" ;
+
+	return capLista;}
+
+	
+	elemAdaugat -> informatie = informatie;
+
+	elemAdaugat -> ptrNextElem = NULL;
+
+
+	if (!capLista) {return elemAdaugat;}
+	
+	pelem elemCurr = capLista;
+
+	
+	while (elemCurr -> ptrNextElem != NULL ) {
+	
+	elemCurr = elemCurr ->ptrNextElem; }
+
+	elemCurr -> ptrNextElem = elemAdaugat;
+
+	return capLista;} 
+
+  
+
+
+//add a node in the linked list after a node parameter
+
+void InsertAfter(pelem capLista, info informatie, info InformatieNew);
+
+void InsertAfter(pelem capLista, info informatie, info informatieNew){
+
+	pelem elemCurr = capLista;
+
+	while ((elemCurr != NULL) && (elemCurr -> informatie != informatie)) {
+		elemCurr = elemCurr -> ptrNextElem;}
+
+
+	if (elemCurr == NULL) {
+		cout << "str" << informatie << "\n";}
+		
+		
+	else {
+		pelem elemNew = new elem;
+		
+		if (!elemNew) {
+		
+		cout << "str" << "\n"; }
+
+		
+		else {
+			elemNew -> informatie = informatieNew;
+			
+			elemNew -> ptrNextElem = elemCurr -> ptrNextElem;
+			
+			elemCurr -> ptrNextElem = elemNew;}
+
+	}
+
+}
+
+
+
+
+//insert a node in the linked list before a node parameter
+
+pelem InsertBefore(pelem capLista, info informatie, info informatieNew);
+
+pelem InsertBefore(pelem capLista, info informatie, info informatieNew){
+
+	pelem elemCurr = capLista, elemNew = new elem, anteriorElemCurr;
+
+	if (!elemNew) {
+	
+	cout << "str" << "\n";
+
+	return capLista;}
+
+
+	elemNew -> informatie = informatieNew;
+
+	
+	if (capLista -> informatie == informatie) {
+
+		elemNew -> ptrNextElem = capLista;
+
+		return elemNew;}
+
+
+	while (( elemCurr != NULL) && (elemCurr -> informatie != informatie)) {
+
+		anteriorElemCurr = elemCurr;
+
+		elemCurr = elemCurr -> ptrNextElem;}
+
+
+	if (elemCurr == NULL) {
+
+		cout << "str" << informatie << "\n";
+
+		delete elemNew;}
+
+	else {
+
+		elemNew -> ptrNextElem = elemCurr;
+
+		anteriorElemCurr -> ptrNextElem = elemNew;
+
+		return capLista;}
+    
+}
+
+
+
+
+// delete a node in the linked list, which has the data field specified
+
+pelem delElem(pelem capLista, info informatie);
+
+pelem delElem(pelem capLista, info informatie) {
+
+	pelem elemCurr = capLista, anteriorElemCurr;
+
+	if (elemCurr -> informatie == informatie) {
+		
+		capLista = capLista -> ptrNextElem;
+
+		delete elemCurr; }
+
+	else {
+
+		while ((elemCurr != NULL) && (elemCurr -> informatie != informatie)) {
+
+
+		anteriorElemCurr = elemCurr;
+		
+		elemCurr = elemCurr -> ptrNextElem;}
+
+	
+		if ( elemCurr == NULL) {
+
+			cout << "str" << informatie << "\n";}
+
+		else {
+
+			anteriorElemCurr -> ptrNextElem = elemCurr -> ptrNextElem;
+
+
+			delete elemCurr; }
+}
+		return capLista;
+
+}
+
+
+
+
+//delete a linked list
+
+pelem delLL(pelem capLista);
+
+pelem delLL(pelem capLista){
+
+	pelem elemSters;
+
+	while (capLista != NULL) {
+
+		elemSters = capLista;
+		
+		capLista = capLista -> ptrNextElem;
+
+		delete elemSters;}
+
+		return NULL;
+
+}
+
+
+
+
+int main(){}
+  
